@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "./index.css";
 
 const pizzaData = [
   {
@@ -49,7 +50,8 @@ const pizzaData = [
 function App() {
   return (
     // it can return only ONE elements, it should be nested (called) if we want more elements
-    <div>
+    // "className" in JSX Rules
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
@@ -71,24 +73,43 @@ root.render(
   2. Declare the components in the top level and never nest/write inside the declaration block
  */
 function Header() {
-  return <h1>Fast React Pizza Co.</h1>;
+  // const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
+  const style = {};
+
+  // Adding styling
+  return (
+    <header className="header">
+      <h1 style={style}>Fast React Pizza Co.</h1>
+    </header>
+  );
 }
 
 function Menu() {
   return (
-    <div>
+    <main className="menu">
       <h2>Our Menu</h2>;
       <Pizza />
       <Pizza />
       <Pizza />
       <Pizza />
-    </div>
+    </main>
   );
 }
 
 function Footer() {
+  const hour = new Date().getHours();
+  const openHour = 7;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
+  console.log(isOpen);
+
+  // if (hour >= openHour && hour <= closeHour) alert("Wer're currently open!");
+  // else alert("Sorry we're closed");
+
   return (
-    <footer>{new Date().toLocaleTimeString()}. We're currently open</footer>
+    <footer className="footer">
+      {new Date().toLocaleTimeString()}. We're currently open
+    </footer>
   );
 }
 
@@ -96,7 +117,7 @@ function Pizza() {
   return (
     <div>
       <img src="pizzas/spinaci.jpg" alt="Pizza Spinaci" />
-      <h2>Pizza Spinaci</h2>
+      <h3>Pizza Spinaci</h3>
       <p>Tomato, mozarella, spinach, and ricotta cheese</p>;
     </div>
   );
@@ -107,21 +128,39 @@ function Pizza() {
 
 // WHAT is JSX?
 /* 
-- Declarative syntax to **describe** what components **look like** and **how** they work
-- Components must **return** a block of JSX
-- Extension of JS that allows us to **embed JS, CSS and React components into HTML**
-- Each JSX element is **converted** to a React.createElement function call
-- We could use React **without JSX**
+  - Declarative syntax to **describe** what components **look like** and **how** they work
+  - Components must **return** a block of JSX
+  - Extension of JS that allows us to **embed JS, CSS and React components into HTML**
+  - Each JSX element is **converted** to a React.createElement function call
+  - We could use React **without JSX**
 
 JSX IS DECLARATIVE
-(Review: 
-Imperative - "HOW to do things"
-- Manual DOM element selections and DOM traversing
-- Step-by-step DOM mutations until we reached the desired UI)
+  (Review: 
+  Imperative - "HOW to do things"
+    - Manual DOM element selections and DOM traversing
+    - Step-by-step DOM mutations until we reached the desired UI)
 
-DECLARATIVE - "WHAT we want"
-- Describe what UI should look like using JSX, based on current data (props and state)
-- This happens without manipulating DOM elements
-- An **abstraction** away from DOM: **we never touch the DOM**
-- Instead, we think of the UI as a **reflection of the current data**
+  DECLARATIVE - "WHAT we want"
+    - Describe what UI should look like using JSX, based on current data (props and state)
+    - This happens without manipulating DOM elements
+    - An **abstraction** away from DOM: **we never touch the DOM**
+    - Instead, we think of the UI as a **reflection of the current data**
+
+SEPARATION OF CONCERNS? YES
+- one technology per file (traditional way)
+
+  Evolution
+  Rise of interactive SPAs -> JS is in charge of HTML -> Logic and UI are tightly coupled -> Why keep them separated? -> React Components + JSX
+
+  Component
+    - Data
+    - Logic
+    - Appearance
+
+  ONE COMPONENT PER FILE
+    Each component is concerned with one piece of the UI
+    - Question
+    - Menu
+    - Filters
+    - Player
 */
