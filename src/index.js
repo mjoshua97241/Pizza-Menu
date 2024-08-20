@@ -181,4 +181,28 @@ PROPS {}
   - a.k.a. communication channel
   - you can pass through any data (arrays, objects, numbers or etc)
   - FUNDAMENTAL things on the react
+
+  PROPS ARE **READ-ONLY!**
+  ☝ Props are read-only, they are **immutable**! This is one of React's strict rules.
+    
+  ☝ If you need to mutate props, you actually **need state**
+
+    WHY?
+      👉 Mutating props would affect parent, creating **side effects** (not pure). React is pure functions.
+      👉 Components have to be **pure functions** in terms of props and state
+      👉 This allows React to optimize apps, avoid bugs, make apps predictable
+
+  - Data
+    - Props - data coming from the **outside**, and can **only** be updated by the **parent component**
+    - State - internal data that can be update by the **component's logic**
+  - Logic
+  - Appearance
+
+  ONE-WAY DATA FLOW
+    - from parents to children (top to bottom) and never to opposite direction
+
+    WHY?
+    👉 ...makes applications more predictable and easier to understand
+    👉 ...makes applications easier to debug, as we have more control over the data
+    👉 ...is more performant
 */
