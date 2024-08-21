@@ -205,4 +205,22 @@ PROPS {}
     👉 ...makes applications more predictable and easier to understand
     👉 ...makes applications easier to debug, as we have more control over the data
     👉 ...is more performant
+
+RULES OF JSX RULES
+
+  General JSX Rules
+
+  👉 JSX works essentially like HTML, but we can enter "Javascript mode" by using {} (for text or attributes)
+
+  👉 We can place JavaScript expressions inside {}. Examples: reference variables, create arrays or objects,[].map(), ternary operator
+
+  👉 Statements are **not allowed** (if/else, for, switch)
+
+  👉 JSX produces a JS expression
+    const el = <h1>Hello React!</h1>
+    const el = React.createElement("h1", null, "Hello React!");
+    1. We can place **other pieces of JSX** inside {}
+    2. We can write JSX **anywhere** inside a component (in if/else, assign to variables, pass it into functions)
+
+  👉 A piece of JSX can only have **one root element**. If you need more, use <React.Fragment> (or the short <>)
 */
