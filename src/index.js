@@ -132,6 +132,8 @@ function Menu() {
 function Pizza(props) {
   console.log(props);
 
+  if (props.pizzaObj.soldOut) return null;
+
   return (
     <li className="pizza">
       <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
@@ -146,7 +148,7 @@ function Pizza(props) {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 8;
+  const openHour = 20;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
@@ -154,6 +156,10 @@ function Footer() {
   // if (hour >= openHour && hour <= closeHour) alert("Wer're currently open!");
   // else alert("Sorry we're closed");
 
+  // Conditional Rendering with Multiple Returns
+  // if (!isOpen) return <p>CLOSED</p>;
+
+  // Ternary Operator
   return (
     <footer className="footer">
       {isOpen ? (
@@ -261,4 +267,9 @@ RULES OF JSX RULES
 
 RENDERING LISTS
   - we have an array and create ONE component for each element of the array. Instead of doing it manually, we want to do it all at once dynamically.
+
+CONDITIONAL RENDERING
+  👉 **Ternary Operator** - use this when you need to return some piece of JSX based on a condition. We can use it ALL the time.
+
+  👉IF/ELSE - if we want something that is **nothing** (null)
 */
